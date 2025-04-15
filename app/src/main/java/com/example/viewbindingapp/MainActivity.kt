@@ -1,6 +1,10 @@
 package com.example.viewbindingapp
 
+import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -20,18 +24,17 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        var flag1 = true
-          binding.txtView.setOnClickListener {
+
+        binding.btn.setOnClickListener {
+            if (binding.chick.isChecked){
+                intent = Intent(this, MainActivity2::class.java)
+                startActivity(intent)
 
 
-             if (!flag1) {
-                 binding.txtView.text = "this  Arjun Kandekar"
-                 flag1 = true
-             } else {
-                 binding.txtView.text = "hey cutie"
-                 flag1 = false
-             }
-
-         }
+            } else {
+                binding.chick.buttonTintList = ColorStateList.valueOf(Color.RED)
+                Toast.makeText(this, "please check the box", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
